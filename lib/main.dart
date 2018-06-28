@@ -48,12 +48,8 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Text(
               'You have pushed the button this many times:',
-              style: TextStyle(fontSize: 20.0),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
+            new ColoredBox(counter: _counter),
           ],
         ),
       ),
@@ -61,6 +57,39 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: Icon(Icons.add),
+      ),
+    );
+  }
+}
+
+class ColoredBox extends StatelessWidget {
+  const ColoredBox({
+    Key key,
+    @required this.counter,
+  }) : super(key: key);
+
+  final int counter;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 200.0,
+      padding: EdgeInsets.all(30.0),
+      margin: EdgeInsets.all(10.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(30.0),
+        color: Theme.of(context).primaryColor,
+        gradient: LinearGradient(
+          begin: Alignment.bottomCenter,
+          end: Alignment.topCenter,
+            tileMode: TileMode.repeated,
+            colors: [Colors.red, Colors.deepOrange, Colors.orange]),
+      ),
+      child: Center(
+        child: Text(
+          '$counter',
+          style: TextStyle(color: Colors.white, fontSize: 40.0),
+        ),
       ),
     );
   }
